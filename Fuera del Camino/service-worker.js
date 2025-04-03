@@ -69,6 +69,11 @@ self.addEventListener('fetch', event => {
                         });
 
                     return response;
+                }).catch(() => {
+                    // Als de fetch mislukt, probeer een offline fallback te tonen
+                    if (event.request.mode === 'navigate') {
+                        return caches.match('/Fuera-del-Camino/index.html');
+                    }
                 });
             })
     );
