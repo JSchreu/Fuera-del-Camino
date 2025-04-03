@@ -153,17 +153,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('wineTastingForm');
     form.addEventListener('submit', handleSubmit);
 
-    // Tab functionaliteit
-    const tabs = document.querySelectorAll('.tab-btn');
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            // Verwijder active class van alle tabs en contents
-            tabs.forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-
-            // Voeg active class toe aan geklikte tab en bijbehorende content
-            tab.classList.add('active');
-            document.getElementById(tab.dataset.tab).classList.add('active');
+    // Tab switching functionaliteit
+    document.querySelectorAll('.tab-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            // Verwijder active class van alle tabs
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            // Voeg active class toe aan geklikte tab
+            button.classList.add('active');
+            const tabId = button.getAttribute('data-tab');
+            document.querySelector(`[data-content="${tabId}"]`).classList.add('active');
+            
+            // Als we naar het zoektabblad gaan, ververs de zoekresultaten
+            if (tabId === 'search') {
+                displaySearchResults();
+            }
+            
+            // Als we naar het statistiek tabblad gaan, ververs de statistieken
+            if (tabId === 'stats') {
+                displayStats();
+            }
+            
+            // Als we naar het invoer tabblad gaan, reset het formulier
+            if (tabId === 'input') {
+                document.getElementById('wineForm').reset();
+            }
         });
     });
 

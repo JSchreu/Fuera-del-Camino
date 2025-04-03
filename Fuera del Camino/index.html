@@ -30,7 +30,7 @@
             </div>
         </nav>
 
-        <div class="tab-content active" id="form">
+        <div class="tab-content active" data-content="input" id="form">
             <h2><i class="fas fa-wine-glass"></i> Fuera del Camino Proefformulier</h2>
             
             <form id="wineTastingForm">
@@ -253,7 +253,7 @@
             </form>
         </div>
 
-        <div class="tab-content" id="search">
+        <div class="tab-content" data-content="search" id="search">
             <h2><i class="fas fa-search"></i> Zoek Proefnotities</h2>
             <div class="search-container">
                 <div class="search-filters">
@@ -289,6 +289,11 @@
                     <!-- Dynamisch gegenereerd door JavaScript -->
                 </div>
             </div>
+        </div>
+
+        <div class="tab-content" data-content="stats">
+            <h2>Statistieken</h2>
+            <!-- ... existing stats content ... -->
         </div>
     </div>
     <script>
