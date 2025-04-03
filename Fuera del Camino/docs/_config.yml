@@ -1,0 +1,9 @@
+title: Wijn Proefmethode
+description: Een app voor het bijhouden van wijnproeverijen
+baseurl: "/Fuera-del-Camino"
+url: "https://jschreu.github.io"
+
+# Build settings
+markdown: kramdown
+theme: jekyll-theme-minimal
+exclude: ['node_modules', 'package.json', 'package-lock.json'] 
