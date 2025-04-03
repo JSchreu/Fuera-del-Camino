@@ -1,18 +1,18 @@
 const CACHE_NAME = 'wijn-proefmethode-v1';
 const urlsToCache = [
-    '/',
-    '/index.html',
-    '/style.css',
-    '/script.js',
-    '/manifest.json',
-    '/icons/icon-192x192.png',
-    '/icons/icon-512x512.png',
-    '/fonts/fa-solid/fa-solid-900.woff2',
-    '/fonts/fa-solid/fa-solid-900.woff',
-    '/fonts/fa-solid/fa-solid-900.ttf',
-    '/fonts/fa-solid/fa-solid-900.eot',
-    '/fonts/fa-solid/fa-solid-900.svg',
-    '/images/background.jpg',
+    '/Fuera-del-Camino/',
+    '/Fuera-del-Camino/index.html',
+    '/Fuera-del-Camino/style.css',
+    '/Fuera-del-Camino/script.js',
+    '/Fuera-del-Camino/manifest.json',
+    '/Fuera-del-Camino/icons/icon-192x192.png',
+    '/Fuera-del-Camino/icons/icon-512x512.png',
+    '/Fuera-del-Camino/fonts/fa-solid/fa-solid-900.woff2',
+    '/Fuera-del-Camino/fonts/fa-solid/fa-solid-900.woff',
+    '/Fuera-del-Camino/fonts/fa-solid/fa-solid-900.ttf',
+    '/Fuera-del-Camino/fonts/fa-solid/fa-solid-900.eot',
+    '/Fuera-del-Camino/fonts/fa-solid/fa-solid-900.svg',
+    '/Fuera-del-Camino/images/background.jpg',
     'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap'
 ];
 
