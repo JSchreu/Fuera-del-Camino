@@ -151,7 +151,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Voeg formulier submit handler toe
     const form = document.getElementById('wineTastingForm');
-    form.addEventListener('submit', handleSubmit);
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const userName = document.getElementById('userName').value.trim();
+        if (!userName) {
+            alert('Vul eerst je naam in voordat je een proefnotitie opslaat.');
+            return;
+        }
+        
+        handleSubmit(e);
+    });
 
     // Tab switching functionaliteit
     document.querySelectorAll('.tab-btn').forEach(button => {
@@ -163,21 +173,27 @@ document.addEventListener('DOMContentLoaded', () => {
             // Voeg active class toe aan geklikte tab
             button.classList.add('active');
             const tabId = button.getAttribute('data-tab');
-            document.querySelector(`[data-content="${tabId}"]`).classList.add('active');
-            
-            // Als we naar het zoektabblad gaan, ververs de zoekresultaten
-            if (tabId === 'search') {
-                displaySearchResults();
-            }
-            
-            // Als we naar het statistiek tabblad gaan, ververs de statistieken
-            if (tabId === 'stats') {
-                displayStats();
-            }
-            
-            // Als we naar het invoer tabblad gaan, reset het formulier
-            if (tabId === 'input') {
-                document.getElementById('wineForm').reset();
+            const targetContent = document.querySelector(`[data-content="${tabId}"]`);
+            if (targetContent) {
+                targetContent.classList.add('active');
+                
+                // Als we naar het zoektabblad gaan, ververs de zoekresultaten
+                if (tabId === 'search') {
+                    displaySearchResults();
+                }
+                
+                // Als we naar het statistiek tabblad gaan, ververs de statistieken
+                if (tabId === 'stats') {
+                    displayStats();
+                }
+                
+                // Als we naar het invoer tabblad gaan, reset het formulier
+                if (tabId === 'input') {
+                    const form = document.getElementById('wineTastingForm');
+                    if (form) {
+                        form.reset();
+                    }
+                }
             }
         });
     });
@@ -241,28 +257,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Sla naam op bij wijziging
     userNameInput.addEventListener('change', () => {
         localStorage.setItem('userName', userNameInput.value);
-    });
-
-    // Update de form submit handler
-    document.getElementById('wineForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const userName = userNameInput.value.trim();
-        if (!userName) {
-            alert('Vul eerst je naam in voordat je een proefnotitie opslaat.');
-            return;
-        }
-        
-        const formData = new FormData(this);
-        const tastingNote = {
-            id: Date.now(),
-            date: new Date().toISOString(),
-            userName: userName,
-            wineName: formData.get('wineName'),
-            // ... rest van de bestaande form data ...
-        };
-        
-        // ... rest van de bestaande submit handler code ...
     });
 
     // Update de zoekfunctie om ook op naam te zoeken
