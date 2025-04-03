@@ -142,30 +142,40 @@ function handleSubmit(event) {
 
 // Event listeners
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM Content Loaded');
+    
     // Initialiseer de aroma selector
     createAromaSelector();
 
     // Voeg custom aroma handler toe
     const addAromaBtn = document.getElementById('addCustomAroma');
-    addAromaBtn.addEventListener('click', addCustomAroma);
+    if (addAromaBtn) {
+        addAromaBtn.addEventListener('click', addCustomAroma);
+    }
 
     // Voeg formulier submit handler toe
     const form = document.getElementById('wineTastingForm');
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const userName = document.getElementById('userName').value.trim();
-        if (!userName) {
-            alert('Vul eerst je naam in voordat je een proefnotitie opslaat.');
-            return;
-        }
-        
-        handleSubmit(e);
-    });
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            console.log('Form submitted');
+            
+            const userName = document.getElementById('userName').value.trim();
+            if (!userName) {
+                alert('Vul eerst je naam in voordat je een proefnotitie opslaat.');
+                return;
+            }
+            
+            handleSubmit(e);
+        });
+    }
 
     // Tab switching functionaliteit
-    document.querySelectorAll('.tab-btn').forEach(button => {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    tabButtons.forEach(button => {
         button.addEventListener('click', () => {
+            console.log('Tab clicked:', button.getAttribute('data-tab'));
+            
             // Verwijder active class van alle tabs
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
@@ -174,8 +184,10 @@ document.addEventListener('DOMContentLoaded', () => {
             button.classList.add('active');
             const tabId = button.getAttribute('data-tab');
             const targetContent = document.querySelector(`[data-content="${tabId}"]`);
+            
             if (targetContent) {
                 targetContent.classList.add('active');
+                console.log('Tab content activated:', tabId);
                 
                 // Als we naar het zoektabblad gaan, ververs de zoekresultaten
                 if (tabId === 'search') {
@@ -192,72 +204,83 @@ document.addEventListener('DOMContentLoaded', () => {
                     const form = document.getElementById('wineTastingForm');
                     if (form) {
                         form.reset();
+                        console.log('Form reset');
                     }
                 }
+            } else {
+                console.error('Target content not found for tab:', tabId);
             }
         });
     });
 
     // Export/Import functionaliteit
-    document.getElementById('exportBtn').addEventListener('click', () => {
-        const tastingNotes = JSON.parse(localStorage.getItem('tastingNotes') || '[]');
-        const dataStr = JSON.stringify(tastingNotes, null, 2);
-        const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-        
-        const exportFileDefaultName = 'wijn-proefnotities.json';
-        
-        const linkElement = document.createElement('a');
-        linkElement.setAttribute('href', dataUri);
-        linkElement.setAttribute('download', exportFileDefaultName);
-        linkElement.click();
-    });
-
-    document.getElementById('importBtn').addEventListener('click', () => {
-        const input = document.createElement('input');
-        input.type = 'file';
-        input.accept = '.json';
-        
-        input.onchange = function(e) {
-            const file = e.target.files[0];
-            const reader = new FileReader();
+    const exportBtn = document.getElementById('exportBtn');
+    if (exportBtn) {
+        exportBtn.addEventListener('click', () => {
+            const tastingNotes = JSON.parse(localStorage.getItem('tastingNotes') || '[]');
+            const dataStr = JSON.stringify(tastingNotes, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
             
-            reader.onload = function(e) {
-                try {
-                    const importedData = JSON.parse(e.target.result);
-                    if (Array.isArray(importedData)) {
-                        localStorage.setItem('tastingNotes', JSON.stringify(importedData));
-                        alert('Proefnotities succesvol geïmporteerd!');
-                        // Ververs de zoekresultaten als we op het zoektabblad zijn
-                        if (document.querySelector('[data-tab="search"]').classList.contains('active')) {
-                            displaySearchResults();
+            const exportFileDefaultName = 'wijn-proefnotities.json';
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+        });
+    }
+
+    const importBtn = document.getElementById('importBtn');
+    if (importBtn) {
+        importBtn.addEventListener('click', () => {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    try {
+                        const importedData = JSON.parse(e.target.result);
+                        if (Array.isArray(importedData)) {
+                            localStorage.setItem('tastingNotes', JSON.stringify(importedData));
+                            alert('Proefnotities succesvol geïmporteerd!');
+                            // Ververs de zoekresultaten als we op het zoektabblad zijn
+                            if (document.querySelector('[data-tab="search"]').classList.contains('active')) {
+                                displaySearchResults();
+                            }
+                        } else {
+                            alert('Ongeldig bestandsformaat. Het bestand moet een JSON-array bevatten.');
                         }
-                    } else {
-                        alert('Ongeldig bestandsformaat. Het bestand moet een JSON-array bevatten.');
+                    } catch (error) {
+                        console.error('Import error:', error);
+                        alert('Er is een fout opgetreden bij het importeren van het bestand.');
                     }
-                } catch (error) {
-                    alert('Er is een fout opgetreden bij het importeren van het bestand.');
-                }
+                };
+                
+                reader.readAsText(file);
             };
             
-            reader.readAsText(file);
-        };
-        
-        input.click();
-    });
+            input.click();
+        });
+    }
 
     // Gebruikersnaam functionaliteit
     const userNameInput = document.getElementById('userName');
+    if (userNameInput) {
+        // Laad opgeslagen naam
+        const savedName = localStorage.getItem('userName');
+        if (savedName) {
+            userNameInput.value = savedName;
+        }
 
-    // Laad opgeslagen naam
-    const savedName = localStorage.getItem('userName');
-    if (savedName) {
-        userNameInput.value = savedName;
+        // Sla naam op bij wijziging
+        userNameInput.addEventListener('change', () => {
+            localStorage.setItem('userName', userNameInput.value);
+        });
     }
-
-    // Sla naam op bij wijziging
-    userNameInput.addEventListener('change', () => {
-        localStorage.setItem('userName', userNameInput.value);
-    });
 
     // Update de zoekfunctie om ook op naam te zoeken
     function displaySearchResults() {
