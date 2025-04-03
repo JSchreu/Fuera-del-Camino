@@ -1,0 +1,20 @@
+# Windows bestanden
+Thumbs.db
+Desktop.ini
+
+# PowerShell scripts
+*.ps1
+
+# Editor bestanden
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS bestanden
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db 

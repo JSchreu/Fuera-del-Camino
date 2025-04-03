@@ -1,0 +1,21 @@
+{
+    "name": "Fuera del Camino Proefformulier",
+    "short_name": "Wijn Proeven",
+    "description": "Een offline tool voor het maken van wijnproefnotities volgens de WSET methode",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#FDF5E6",
+    "theme_color": "#4A1F24",
+    "icons": [
+        {
+            "src": "icons/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+} 
