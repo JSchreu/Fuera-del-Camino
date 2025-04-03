@@ -1,18 +1,20 @@
 const CACHE_NAME = 'wijn-proefmethode-v1';
+const BASE_PATH = '/Fuera-del-Camino';
+
 const urlsToCache = [
-    './',
-    './index.html',
-    './style.css',
-    './script.js',
-    './manifest.json',
-    './fonts/fontawesome.css',
-    './fonts/fa-solid-900.woff2',
-    './fonts/fa-solid-900.woff',
-    './fonts/fa-solid-900.ttf',
-    './fonts/fa-solid-900.eot',
-    './fonts/fa-solid-900.svg',
-    './icons/icon-192x192.png',
-    './icons/icon-512x512.png'
+    BASE_PATH + '/',
+    BASE_PATH + '/index.html',
+    BASE_PATH + '/style.css',
+    BASE_PATH + '/script.js',
+    BASE_PATH + '/manifest.json',
+    BASE_PATH + '/fonts/fontawesome.css',
+    BASE_PATH + '/fonts/fa-solid-900.woff2',
+    BASE_PATH + '/fonts/fa-solid-900.woff',
+    BASE_PATH + '/fonts/fa-solid-900.ttf',
+    BASE_PATH + '/fonts/fa-solid-900.eot',
+    BASE_PATH + '/fonts/fa-solid-900.svg',
+    BASE_PATH + '/icons/icon-192x192.png',
+    BASE_PATH + '/icons/icon-512x512.png'
 ];
 
 // Installeer service worker en cache de benodigde bestanden
@@ -72,7 +74,7 @@ self.addEventListener('fetch', event => {
                 }).catch(() => {
                     // Als de fetch mislukt, return de offline pagina
                     if (event.request.mode === 'navigate') {
-                        return caches.match('./index.html');
+                        return caches.match(BASE_PATH + '/index.html');
                     }
                 });
             })

@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fuera del Camino Proefformulier</title>
-    <link rel="manifest" href="./manifest.json">
+    <link rel="manifest" href="/Fuera-del-Camino/manifest.json">
     <meta name="theme-color" content="#4A1F24">
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="./fonts/fontawesome.css">
+    <link rel="stylesheet" href="/Fuera-del-Camino/style.css">
+    <link rel="stylesheet" href="/Fuera-del-Camino/fonts/fontawesome.css">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Wijn Proeven">
-    <link rel="apple-touch-icon" href="./icons/icon-192x192.png">
+    <link rel="apple-touch-icon" href="/Fuera-del-Camino/icons/icon-192x192.png">
 </head>
 <body>
     <div class="app-container">
@@ -300,7 +300,7 @@
         // Registreer service worker
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./service-worker.js')
+                navigator.serviceWorker.register('/Fuera-del-Camino/service-worker.js')
                     .then(registration => {
                         console.log('ServiceWorker registratie succesvol:', registration.scope);
                     })
@@ -310,6 +310,6 @@
             });
         }
     </script>
-    <script src="./script.js"></script>
+    <script src="/Fuera-del-Camino/script.js"></script>
 </body>
 </html> 
