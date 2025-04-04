@@ -281,3 +281,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // ... rest van de bestaande zoekfunctie code ...
     }
 }); 
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/service-worker.js").then(() => {
+      console.log("Service Worker geregistreerd!");
+    });
+  });
+}
