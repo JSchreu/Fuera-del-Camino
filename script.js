@@ -1,20 +1,19 @@
 // Aroma bibliotheek
 const aromaLibrary = {
     fruit: [
-        'Appel', 'Peer', 'Citrus', 'Perzik', 'Abrikoos', 'Banaan', 'Mango', 'Ananas',
-        'Framboos', 'Aardbei', 'Bosbes', 'Kers', 'Pruim', 'Druif', 'Vijg', 'Granaat'
+        'Appel', 'Peer', 'Citroen', 'Limoen', 'Meloen', 'Perzik', 'Abrikoos', 'Banaan', 'Mango', 'Ananas',
+        'Framboos', 'Aardbei', 'Bosbes', 'Braam', 'Kers', 'Pruim', 'Druif', 'Vijg', 'Granaat'
     ],
     floral: [
-        'Roos', 'Jasmijn', 'Lavendel', 'Violet', 'Geranium', 'Oranjebloesem',
-        'Acacia', 'Linde', 'Kamille', 'Hibiscus', 'Magnolia', 'Narcis'
+        'Roos', 'Jasmijn', 'Lavendel', 'Violet', 'Geranium', 'Oranjebloesem', 'Kamille', 'Hibiscus' 
     ],
     spice: [
         'Kaneel', 'Kruidnagel', 'Peper', 'Vanille', 'Kardemom', 'Gember',
-        'Nootmuskaat', 'Anijs', 'Saffraan', 'Koriander', 'Komijn', 'Kurkuma'
+        'Nootmuskaat', 'Anijs'
     ],
     herb: [
         'Tijm', 'Rozemarijn', 'Salie', 'Munt', 'Basilicum', 'Laurier',
-        'Dille', 'Peterselie', 'Oregano', 'Majoraan', 'Venkel', 'Citroengras'
+         'Peterselie', 'Oregano', 'Venkel', 'Citroengras'
     ],
     earth: [
         'Aarde', 'Paddenstoel', 'Truffel', 'Minerale', 'Leer', 'Tabak',
