@@ -95,6 +95,7 @@ function handleSubmit(event) {
     const formData = new FormData(event.target);
     const data = {
         wineInfo: {
+            Wine: formData.get('wijnnaam'),
             type: formData.get('wineType'),
             vintage: formData.get('vintage'),
             winemaker: formData.get('winemaker'),
